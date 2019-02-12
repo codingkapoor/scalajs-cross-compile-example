@@ -1,6 +1,8 @@
+enablePlugins(ScalaJSPlugin)
+
 name := "Foo root project"
 
-scalaVersion in ThisBuild := "2.12.4"
+scalaVersion in ThisBuild := "2.12.6"
 
 lazy val root = project.in(file(".")).
   aggregate(fooJS, fooJVM).
@@ -15,7 +17,9 @@ lazy val foo = crossProject.in(file(".")).
     version := "0.1-SNAPSHOT"
   ).
   jvmSettings(
-    // Add JVM-specific settings here
+    libraryDependencies ++= List(
+      "com.glassbeam" %% "scalar-spl" % "6.1.0.0"
+    )
   ).
   jsSettings(
     // Add JS-specific settings here
